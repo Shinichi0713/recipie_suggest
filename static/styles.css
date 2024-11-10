@@ -1,0 +1,22 @@
+.custom-button {
+    background-color: #CCFFFF; /* ボタンの背景色 */
+    color: rgb(17, 17, 17); /* ボタンの文字色 */
+    padding: 10px 20px; /* ボタンの内側の余白 */
+    border: none; /* ボタンの縁をなくす */
+    border-radius: 25px; /* ボタンの角を丸くする */
+    font-size: 16px; /* 文字のサイズ */
+    cursor: pointer; /* カーソルをポインターにする */
+    transition: background-color 0.3s ease; /* 背景色の変化にアニメーションを追加 */
+}
+
+.custom-button:hover {
+    background-color: #99FFFF; /* ホバー時の背景色 */
+}
+
+
+.title{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background-color: #CCFFFF;
+}
