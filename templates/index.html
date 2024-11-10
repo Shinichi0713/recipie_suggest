@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Cooking Recipies</title>
+</head>
+<body>
+    <h1 class="title">Looking for a dish that can be cooked</h1>
+    <form method="post" action="/">
+        <label for="category">choice category:</label>
+        <select name="category" id="category">
+            {% for category in categories %}
+                <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">look</button>
+    </form>
+    <h2>Ingredients:</h2>
+    <form method="post" id="categoryForm">
+        {% for item_selectable in items_selectable %}
+            <button type="submit" id="item_selected" name="item_selected" value="{{item_selectable}}" class="custom-button" >{{ item_selectable }}</button>
+        {% endfor %}
+    </form>
+    
+    <h2>Choiced igredients:</h2>
+    <ul>
+        {% for ingredient in ingredients %}
+            <li>{{ ingredient }}</li>
+        {% endfor %}
+    </ul>
+    
+    <form method="post">
+        <button type="submit" id="search" name="search" value="true">look for dish</button>
+    </form>
+
+    <h2>Dish can be cooked:</h2>
+    {% if result %}
+        <ul>
+            {% for item in result %}
+                <li>{{ item["recipe_name"] }}</li>
+                <img src="{{ item['url_image'] }}" alt="Image" width="500">
+            {% endfor %}
+        </ul>
+    {% else %}
+        <li>no recipies</li>
+    {% endif %}
+
+    <script>
+        $(document).ready(function() {
+            $('#categoryForm').on('submit', function(event) {
+                event.preventDefault();
+                var selectedCategory = $('#categoryDropdown').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/get_items',
+                    data: { category: selectedCategory },
+                    success: function(response) {
+                        var itemList = $('#itemList');
+                        itemList.empty();
+                        response.items.forEach(function(item) {
+                            itemList.append('<li class="item">' + item + '</li>');
+                        });
+                    }
+                });
+            });
+
+            $(document).on('click', '.item', function() {
+                var selectedItem = $(this).text();
+                $.ajax({
+                    type: 'POST',
+                    url: '/select_item',
+                    data: { item: selectedItem },
+                    success: function(response) {
+                        $('#selectedItem').text('Selected Item: ' + response.selected_item);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
