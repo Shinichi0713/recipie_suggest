@@ -1,0 +1,154 @@
+{
+    "Omelette Rice": [
+        "egg",
+        "chicken breast",
+        "onion",
+        "rice",
+        "ketchup"
+    ],
+    "Curry Rice": [
+        "meat",
+        "potato",
+        "carrot",
+        "onion",
+        "curry roux"
+    ],
+    "Ramen": [
+        "chinese noodle",
+        "pork",
+        "bean sprout",
+        "green onion",
+        "ramen soup"
+    ],
+    "Sushi": [
+        "fish",
+        "sushi rice",
+        "seaweed",
+        "vinegar",
+        "sugar",
+        "salt"
+    ],
+    "Tempura": [
+        "shrimp",
+        "sweet potato",
+        "eggplant",
+        "pumpkin",
+        "tempura batter",
+        "oil"
+    ],
+    "Udon": [
+        "udon noodle",
+        "dashi",
+        "soy sauce",
+        "green onion",
+        "bonito flake"
+    ],
+    "Soba": [
+        "soba noodle",
+        "dashi",
+        "soy sauce",
+        "green onion",
+        "wasabi"
+    ],
+    "Takoyaki": [
+        "octopus",
+        "takoyaki batter",
+        "dashi",
+        "cabbage",
+        "tempura bit",
+        "sauce"
+    ],
+    "Okonomiyaki": [
+        "okonomiyaki batter",
+        "dashi",
+        "cabbage",
+        "pork",
+        "sauce"
+    ],
+    "Yakisoba": [
+        "chinese noodle",
+        "pork",
+        "cabbage",
+        "bean sprout",
+        "green pepper",
+        "sauce"
+    ],
+    "Gyoza": [
+        "pork",
+        "cabbage",
+        "garlic chive",
+        "garlic",
+        "gyoza wrapper"
+    ],
+    "Sukiyaki": [
+        "beef",
+        "tofu",
+        "chinese cabbage",
+        "shiitake mushroom",
+        "sukiyaki sauce"
+    ],
+    "Shabu-shabu": [
+        "pork",
+        "chinese cabbage",
+        "enoki mushroom",
+        "shimeji mushroom",
+        "dashi"
+    ],
+    "Tonkatsu": [
+        "pork loin",
+        "bread crumb",
+        "egg",
+        "flour",
+        "oil"
+    ],
+    "Karaage": [
+        "chicken thigh",
+        "soy sauce",
+        "garlic",
+        "ginger",
+        "flour",
+        "oil"
+    ],
+    "Nikujaga": [
+        "beef",
+        "potato",
+        "carrot",
+        "onion",
+        "soy sauce",
+        "sugar",
+        "mirin"
+    ],
+    "Mapo Tofu": [
+        "tofu",
+        "ground meat",
+        "garlic chive",
+        "doubanjiang",
+        "soy sauce",
+        "sake",
+        "sugar"
+    ],
+    "Hiyashi Chuka": [
+        "chinese noodle",
+        "cucumber",
+        "ham",
+        "tomato",
+        "hiyashi chuka sauce"
+    ],
+    "Beef Stew": [
+        "beef",
+        "potato",
+        "carrot",
+        "onion",
+        "red wine",
+        "canned tomato",
+        "butter"
+    ],
+    "Hamburger Steak": [
+        "ground meat",
+        "bread crumb",
+        "milk",
+        "onion",
+        "egg",
+        "sauce"
+    ]
+}
