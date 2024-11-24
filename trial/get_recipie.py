@@ -19,14 +19,21 @@ def get_recipie_detail(recipie_id):
     pprint(json_data)
 
 
-def get_etail_food_api():
+def get_detail_food_api():
     res = requests.get(f'https://world.openfoodfacts.net/api/v2/product/3017624010701')
-
     json_data = json.loads(res.text)
     pprint(json_data)
 
+
+def get_sample_api():
+    url_target = "https://world.openfoodfacts.net/api/v2/product/3017624010701"
+    res = requests.get(url_target)
+    json_data = json.loads(res.text)
+    pprint(json_data["product"]["ecoscore_data"]["agribalyse"]["name_en"])
+    pprint(json_data["product"]["ingredients_text"])
+
+
+
+
 if __name__ == '__main__':
-    recipie_id = '31-720-2130'     # 親id - 自身のカテゴリid
-    # get_recipie_list()
-    # get_recipie_detail(recipie_id)
-    get_etail_food_api()
+    get_sample_api()
