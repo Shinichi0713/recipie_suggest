@@ -2,7 +2,7 @@
 import requests, json
 
 # theMealDBのAPIを利用して、レシピ情報を取得するクラス
-class RecipieAPI:
+class RecipeAPI:
     def __init__(self):
         self.endpoint_search = 'https://www.themealdb.com/api/json/v1/1/search.php?'
 
@@ -15,14 +15,26 @@ class RecipieAPI:
             char_search = chr(i)
             datas = requests.get(f'{self.endpoint_search}f={char_search}').json()
             # JSONデータを整形して表示
-            formatted_datas = json.dumps(datas, indent=4, ensure_ascii=False)
-            # print(formatted_datas)
             datas = datas["meals"]
             # mealsより料理情報を取得
             for data in datas:
-                self.meals_list.append(data["strMeal"])
+                recipe = Recipe()
+                recipe.meal_name = data["strMeal"]
+                recipe.area = data["strArea"]
+                recipe.category = data["strCategory"]
+                recipe.recipe = data["strInstructions"]
+                recipe.image_url = data["strMealThumb"]
+                for key in data.keys():
+                    if key.startswith("strIngredient"):
+                        if data[key] != "" and data[key] is not None:
+                            recipe.ingredients.append(data[key])
+                self.meals_list.append(recipe)
+
         print(self.meals_list)
-        # return formatted_datas
+
+    def save_meal_list(self, file_path):
+        with open(file_path, "w") as f:
+            json.dump([meal.to_dict() for meal in self.meals_list], f)
 
     def get_recipie_detail(self, recipie_id):
         res = requests.get(f'https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?applicationId={self.applicationid}&categoryId={recipie_id}')
@@ -39,6 +51,23 @@ class RecipieAPI:
         return json_data["product"]["ecoscore_data"]["agribalyse"]["name_en"], json_data["product"]["ingredients_text"]
 
 
+# レシピ情報を取得するクラス
+class Recipe:
+    def __init__(self):
+        self.meal_name = ""
+        self.category = ""
+        self.area = ""
+        self.recipe = ""
+        self.ingredients = []
+        self.image_url = ""
+
+    def to_dict(self):
+        return self.__dict__
+    
+    def save(self, file_path):
+        with open(file_path, "w") as f:
+            json.dump(self.to_dict(), f)
+
 if __name__ == '__main__':
-    api = RecipieAPI()
+    api = RecipeAPI()
     print(api.get_meal_list())

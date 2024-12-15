@@ -46,3 +46,12 @@ TheMealDBのAPIで実現する
 1. 料理一覧の情報を取得
 2. 材料の情報を取得
 3. レシピの情報を取得
+4. 料理の画像
+
+1→a→z
+
+2→1の結果の"strIngredient＊"を取得
+
+3→strInstructions
+
+4→strMealThumb
