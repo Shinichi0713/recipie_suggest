@@ -1,10 +1,12 @@
 
-import requests, json
+import requests, json, os
+
 
 # theMealDBのAPIを利用して、レシピ情報を取得するクラス
 class RecipeAPI:
     def __init__(self):
         self.endpoint_search = 'https://www.themealdb.com/api/json/v1/1/search.php?'
+        self.dir_output = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/dir_meal_information"
 
     # 料理一覧を取得
     def get_meal_list(self):
@@ -29,12 +31,12 @@ class RecipeAPI:
                         if data[key] != "" and data[key] is not None:
                             recipe.ingredients.append(data[key])
                 self.meals_list.append(recipe)
-
+        self.save_meal_list(f"{self.dir_output}/meals.json")
         print(self.meals_list)
 
     def save_meal_list(self, file_path):
         with open(file_path, "w") as f:
-            json.dump([meal.to_dict() for meal in self.meals_list], f)
+            json.dump([meal.to_dict() for meal in self.meals_list], f, indent=4)
 
     def get_recipie_detail(self, recipie_id):
         res = requests.get(f'https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?applicationId={self.applicationid}&categoryId={recipie_id}')
@@ -50,6 +52,10 @@ class RecipeAPI:
         json_data = res.json()
         return json_data["product"]["ecoscore_data"]["agribalyse"]["name_en"], json_data["product"]["ingredients_text"]
 
+    def read_datas(self, file_path):
+        with open(file_path, "r") as f:
+            self.datas_meal = json.load(f)
+        return self.datas_meal
 
 # レシピ情報を取得するクラス
 class Recipe:
@@ -66,8 +72,11 @@ class Recipe:
     
     def save(self, file_path):
         with open(file_path, "w") as f:
-            json.dump(self.to_dict(), f)
+            json.dump(self.to_dict(), f, indent=4)
+
+    
 
 if __name__ == '__main__':
     api = RecipeAPI()
     print(api.get_meal_list())
+    print(api.read_datas(f"{api.dir_output}/meals.json"))
