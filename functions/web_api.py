@@ -7,17 +7,21 @@ class RecipeAPI:
     def __init__(self):
         self.endpoint_search = 'https://www.themealdb.com/api/json/v1/1/search.php?'
         self.dir_output = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/dir_meal_information"
+        if not os.path.exists(self.dir_output):
+            os.makedirs(self.dir_output)
 
     # 料理一覧を取得
     def get_meal_list(self):
         self.meals_list = []
         # 先頭文字をaからzまで取得
         # for i in range(97, 123):
-        for i in range(97, 98):
+        for i in range(97, 99):
             char_search = chr(i)
             datas = requests.get(f'{self.endpoint_search}f={char_search}').json()
             # JSONデータを整形して表示
             datas = datas["meals"]
+            if datas is None:
+                continue
             # mealsより料理情報を取得
             for data in datas:
                 recipe = Recipe()
@@ -69,10 +73,6 @@ class Recipe:
 
     def to_dict(self):
         return self.__dict__
-    
-    def save(self, file_path):
-        with open(file_path, "w") as f:
-            json.dump(self.to_dict(), f, indent=4)
 
     
 
