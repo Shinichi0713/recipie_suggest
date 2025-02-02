@@ -52,9 +52,5 @@ def translate_en_to_ja(text):
 if __name__ == "__main__":
     data_operator = DataOperator()
     data_operator.convert_to_csv()
-    # data_operator.refine_data()
-    # data_operator.write_data(data_operator.data)
-
-    # text_translated = translate_en_to_ja("しょうゆ")
-    # print(text_translated)
+    
     

@@ -3,6 +3,7 @@ import data_operator, synonym_op
 from trial import multiple_to_single
 import image_operator
 
+
 def read_datadictionary():
     dir_current = os.path.dirname(os.path.abspath(__file__))
     with open(dir_current + "/dir_word/data.json", "r") as f:

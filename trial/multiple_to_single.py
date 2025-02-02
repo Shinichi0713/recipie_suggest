@@ -51,7 +51,7 @@ def convert_datas_to_singular(ingredients):
     # 辞書型データを呼び出す
     for key, content in recipe_database.items():
         # 単数形に変換
-        print(content)
+        # print(content)
         singulars = plural_to_singular(content)
         ingredients[key] = singulars
     return ingredients
