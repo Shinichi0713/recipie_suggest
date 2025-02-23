@@ -2,7 +2,7 @@
 import json, os
 import inflect
 
-
+# 取得したデータを単数形、記載揺れを抑える→保存
 class DataOperator:
     def __init__(self):
         self.meals_list = []
@@ -60,7 +60,7 @@ class DataOperator:
         for key, content in recipe_database.items():
             # 単数形に変換
             # print(content)
-            singulars = plural_to_singular(content)
+            singulars = self.plural_to_singular(content)
             ingredients[key] = singulars
         return ingredients
         
