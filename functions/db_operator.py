@@ -15,11 +15,16 @@ class DbOperator():
             self.cursor.execute(sql_str)
             tables = self.cursor.fetchall()
             print(tables)
-
         else:
             raise FileNotFoundError(f"Database not found at {db_path}")
 
-    
+    # 食材をDBに登録する
+    def register_ingredients(self, ingeredients_list):
+        sql_str = "INSERT INTO Ingredients (ingredients, gentre) VALUES (?, ?)"
+        for ingredient in ingeredients_list:
+            self.cursor.execute(sql_str, (ingredient, ""))
+        self.conn.commit()
+
 
     def __del__(self):
         self.conn.close()
