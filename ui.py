@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 import os, csv
 
 os.chdir(os.path.dirname(__file__))
@@ -30,6 +30,14 @@ def index():
             print(result)
     return render_template('index.html', ingredients=ingredients_input, items_selectable=items_selectable, result = result, categories=items.keys(), selected_category=selected_category)
 
+@app.route('/remove_ingredient/<ingredient>', methods=['DELETE'])
+def remove_ingredient(ingredient):
+    try:
+        ingredients_input.remove(ingredient)
+        print(ingredients_input)
+        return jsonify(success=True), 200
+    except ValueError:
+        return jsonify(success=False), 404
 
 def read_ingredients():
     dir_current = os.path.dirname(__file__)

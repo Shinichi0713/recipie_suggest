@@ -27,7 +27,7 @@
     <h2>Choiced igredients:</h2>
     <ul>
         {% for ingredient in ingredients %}
-            <li>{{ ingredient }}</li>
+            <li>{{ ingredient }} <button onclick="removeIngredient('{{ ingredient }}')">×</button></li>
         {% endfor %}
     </ul>
     
@@ -48,6 +48,18 @@
     {% endif %}
 
     <script>
+        function removeIngredient(ingredient) {
+            fetch(`/remove_ingredient/${ingredient}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+            if (response.ok) {
+                window.location.href = '/';  // 削除後にGETメソッドでインデックスページにリダイレクト
+            } else {
+                alert('Error removing ingredient');
+            }
+        });
+        }
         $(document).ready(function() {
             $('#categoryForm').on('submit', function(event) {
                 event.preventDefault();

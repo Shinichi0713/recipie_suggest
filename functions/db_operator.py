@@ -22,8 +22,18 @@ class DbOperator():
     def register_ingredients(self, ingeredients_list):
         sql_str = "INSERT INTO Ingredients (ingredients, gentre) VALUES (?, ?)"
         for ingredient in ingeredients_list:
-            self.cursor.execute(sql_str, (ingredient, ""))
+            if self.check_exist_ingredients(ingredient):
+                continue
+            else:
+                self.cursor.execute(sql_str, (ingredient, ""))
         self.conn.commit()
+
+    # ingredientに一致するレシピを取得する
+    def check_exist_ingredients(self, ingredients):
+        sql_str = "SELECT * FROM Ingredients WHERE ingredients = ?"
+        self.cursor.execute(sql_str, (ingredients,))
+        result = self.cursor.fetchall()
+        return result
 
 
     def __del__(self):
