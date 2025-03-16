@@ -15,9 +15,7 @@ recipe_database = read_datadictionary()
 
 
 def suggest_recipes(ingredients_user):
-    # 入力された食材を正規化する
-    # ingredients_user = [synonym_operator.getSynonym(ingredient) for ingredient in ingredients_user]
-    # ingredients_user = convert_datas_to_singular(ingredients
+    
     ingredients_user = multiple_to_single.plural_to_singular(ingredients_user)
 
     # 入力された食材から料理を提案する
@@ -26,6 +24,7 @@ def suggest_recipes(ingredients_user):
         # 材料が全て揃っているかどうかを確認
         result_check = True
         for recipe_ingredient in recipe_ingredients:
+            # 材料が揃っているかどうかを確認
             if recipe_ingredient in ingredients_user:
                 pass
             else:

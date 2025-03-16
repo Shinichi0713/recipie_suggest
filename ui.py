@@ -26,6 +26,7 @@ def index():
                 ingredients_input.append(item_selected)
         if 'search' in request.form:
             print(ingredients_input)
+            # 検索処理
             result = search_engine.suggest_recipes(ingredients_input)
             print(result)
     return render_template('index.html', ingredients=ingredients_input, items_selectable=items_selectable, result = result, categories=items.keys(), selected_category=selected_category)

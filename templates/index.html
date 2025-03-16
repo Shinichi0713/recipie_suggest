@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Cooking Recipies</title>
 </head>
-<body>
+<body class="whole-background">
     <h1 class="title">Looking for a dish that can be cooked</h1>
     <form method="post" action="/">
         <label for="category">choice category:</label>
@@ -24,18 +24,19 @@
         {% endfor %}
     </form>
     
-    <h2>Choiced igredients:</h2>
-    <ul>
-        {% for ingredient in ingredients %}
-            <li>{{ ingredient }} <button onclick="removeIngredient('{{ ingredient }}')">×</button></li>
-        {% endfor %}
-    </ul>
-    
+    <div>
+        <h2 class="custom-subtitle">Choiced igredients:</h2>
+        <ul>
+            {% for ingredient in ingredients %}
+                <li>{{ ingredient }} <button onclick="removeIngredient('{{ ingredient }}')">×</button></li>
+            {% endfor %}
+        </ul>
+    </div>
     <form method="post">
         <button type="submit" id="search" name="search" value="true">look for dish</button>
     </form>
 
-    <h2>Dish can be cooked:</h2>
+    <h2 class="custom-subtitle">Dish can be cooked:</h2>
     {% if result %}
         <ul>
             {% for item in result %}

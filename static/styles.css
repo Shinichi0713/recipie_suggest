@@ -1,3 +1,8 @@
+
+.whole-background {
+    background-color: #ebf3f8;
+}
+
 .custom-button {
     background-color: #CCFFFF; /* ボタンの背景色 */
     color: rgb(17, 17, 17); /* ボタンの文字色 */
@@ -19,4 +24,12 @@
     font-weight: bold;
     margin-bottom: 20px;
     background-color: #CCFFFF;
+}
+
+.custom-subtitle{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background-color: #CCFFFF;
+    width: 400px;
 }
