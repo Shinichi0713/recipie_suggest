@@ -14,7 +14,8 @@ selected_category = None
 @app.route('/', methods=['GET', 'POST'])
 def index():
     global items_selectable, selected_category
-    result = None
+    suggestions = None
+    candidates = None
     if request.method == "POST":
         if 'category'in request.form:
             selected_category = request.form['category']
@@ -27,9 +28,10 @@ def index():
         if 'search' in request.form:
             print(ingredients_input)
             # 検索処理
-            result = search_engine.suggest_recipes(ingredients_input)
-            print(result)
-    return render_template('index.html', ingredients=ingredients_input, items_selectable=items_selectable, result = result, categories=items.keys(), selected_category=selected_category)
+            suggestions, candidates = search_engine.suggest_recipes(ingredients_input)
+            print(suggestions)
+            print(candidates)
+    return render_template('index.html', ingredients=ingredients_input, items_selectable=items_selectable, result = suggestions, categories=items.keys(), selected_category=selected_category, candidates=candidates)
 
 @app.route('/remove_ingredient/<ingredient>', methods=['DELETE'])
 def remove_ingredient(ingredient):

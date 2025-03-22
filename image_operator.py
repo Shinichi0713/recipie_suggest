@@ -8,7 +8,7 @@ def get_image_urls(keyword):
     # インスタンスを作成
     url_query = f"https://www.bing.com/images/search?q={keyword}&form=HDRSC3&first=1&cw=1177&ch=844"
     # ページの内容を取得
-    response = requests.get(url_query)
+    response = requests.get(url_query, verify=False)
     html_content = response.text
 
     # BeautifulSoupを使用してHTMLを解析

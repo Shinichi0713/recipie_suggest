@@ -34,17 +34,19 @@ def suggest_recipes(ingredients_user):
         if result_check:
             dict = {}
             dict["recipe_name"] = recipe_name
-            # url_image = image_operator.get_image_urls(recipe_name)
-            # dict["url_image"] = url_image
+            url_image = image_operator.get_image_urls(recipe_name)
+            dict["url_image"] = url_image
             suggestions.append(dict)
         # 2個存在しているかを確認
         intersection = set(recipe_ingredients) & set(ingredients_user)
         if len(intersection) >= limit_candidate and result_check is False:
             dict = {}
             dict["recipe_name"] = recipe_name
+            url_image = image_operator.get_image_urls(recipe_name)
+            dict["url_image"] = url_image
             candidates.append(dict)
     # 材料が全て揃っているかどうかを確認
-    return suggestions
+    return suggestions, candidates
 
 if __name__ == "__main__":
     user_ingredients = ["Eggs", "Chicken Breast", "Onion", "Rice", "Ketchup", "Pork Loin", "Bread Crumbs", "Flour", "Oil"]

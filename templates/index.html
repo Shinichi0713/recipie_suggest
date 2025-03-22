@@ -47,6 +47,18 @@
     {% else %}
         <li>no recipies</li>
     {% endif %}
+    
+    <h2 class="custom-subtitle">Dish candidates:</h2>
+    {% if candidates %}
+        <ul>
+            {% for item in candidates %}
+                <li>{{ item["recipe_name"] }}</li>
+                <img src="{{ item['url_image'] }}" alt="Image" width="500">
+            {% endfor %}
+        </ul>
+    {% else %}
+        <li>no candidates</li>
+    {% endif %}
 
     <script>
         function removeIngredient(ingredient) {
