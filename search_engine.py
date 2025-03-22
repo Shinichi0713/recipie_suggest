@@ -13,13 +13,14 @@ def read_datadictionary():
 # レシピデータ読取り
 recipe_database = read_datadictionary()
 
-
+# ユーザーが入力した食材を検索する
 def suggest_recipes(ingredients_user):
-    
+    limit_candidate = 2 
     ingredients_user = multiple_to_single.plural_to_singular(ingredients_user)
 
     # 入力された食材から料理を提案する
     suggestions = []
+    candidates = []
     for recipe_name, recipe_ingredients in recipe_database.items():
         # 材料が全て揃っているかどうかを確認
         result_check = True
@@ -33,9 +34,15 @@ def suggest_recipes(ingredients_user):
         if result_check:
             dict = {}
             dict["recipe_name"] = recipe_name
-            url_image = image_operator.get_image_urls(recipe_name)
-            dict["url_image"] = url_image
+            # url_image = image_operator.get_image_urls(recipe_name)
+            # dict["url_image"] = url_image
             suggestions.append(dict)
+        # 2個存在しているかを確認
+        intersection = set(recipe_ingredients) & set(ingredients_user)
+        if len(intersection) >= limit_candidate and result_check is False:
+            dict = {}
+            dict["recipe_name"] = recipe_name
+            candidates.append(dict)
     # 材料が全て揃っているかどうかを確認
     return suggestions
 
