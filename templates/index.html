@@ -48,8 +48,9 @@
         <li>no recipies</li>
     {% endif %}
     
-    <h2 class="custom-subtitle">Dish candidates:</h2>
+    
     {% if candidates %}
+        <h2 class="custom-subtitle">Dish candidates:</h2>
         <ul>
             {% for item in candidates %}
                 <li>{{ item["recipe_name"] }}</li>
